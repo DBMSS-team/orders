@@ -1,23 +1,25 @@
-const mongoose = require('mongoose');
-const product = require('../../../products/db/product.model');
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
-
-const orderSchema = new Schema(
+const orderSchema = new mongoose.Schema(
 	{
 		user_id: { type: String, required: true },
 		payment_id: { type: String, required: true },
 		billing_add_id: { type: String, required: true },
 		shipping_add_id: { type: String, required: true },
-		amount: { type: Decimal128, required: true },
+		amount: { type: mongoose.Types.Decimal128, required: true },
 		status_id: { type: String, required: true },
-		products: [product.productSchema],
+		products: [
+			{
+				product_id: { type: String },
+				// quantity need to be included(Dicusss)
+			},
+		],
 	},
 	{
 		timestamps: true,
 	}
 );
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 module.exports = Order;
