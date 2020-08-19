@@ -13,9 +13,10 @@ router.route("/:id").get(async (req, res) => {
 	const id = req.params.id;
 	try {
 		const order = await Order.findById(id);
-		res.json(order);
+		if (order) res.json(order);
+		else res.status(400).json({ msg: "Order Not Found!" });
 	} catch (err) {
-		res.status(400).json({ msg: "Order Not Found!" });
+		res.status(400).json({ err });
 	}
 });
 
