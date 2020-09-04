@@ -12,7 +12,9 @@ const orderSchema = new mongoose.Schema(
 		products: [
 			{
 				product_id: { type: String },
-				// quantity need to be included(Dicusss)
+				store_id: { type: String },
+				price: { type: mongoose.Types.Decimal128 },
+				quantity: { type: Number }
 			},
 		],
 	},
